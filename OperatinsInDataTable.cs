@@ -24,7 +24,9 @@ namespace ConsoleApp13
 
             EmployeesDataTable.Rows.Add(1, "Muhammed", "Syria", 502.24, DateTime.Now);
             EmployeesDataTable.Rows.Add(2, "Hasan", "Jordan", 2402, DateTime.Now);
-            EmployeesDataTable.Rows.Add(3, "Muaz", "Italy", 1254, DateTime.Now);
+            EmployeesDataTable.Rows.Add(3, "KOKO", "Jordan", 521, DateTime.Now);
+            EmployeesDataTable.Rows.Add(4, "MOMO", "Jordan", 282, DateTime.Now);
+            EmployeesDataTable.Rows.Add(5, "Muaz", "Italy", 1254, DateTime.Now);
 
 
             Console.WriteLine("\n Emplployess List:\n");
@@ -59,6 +61,90 @@ namespace ConsoleApp13
 
 
 
+
+            int ResultCount = 0;
+
+            DataRow[] ResultRows;
+
+            ResultRows = EmployeesDataTable.Select("Country='Jordan'");
+
+
+            Console.WriteLine("\n\nFilter \"Jordan\" Employees\n");
+
+
+
+            foreach (DataRow RecordRow in ResultRows)
+            {
+                Console.WriteLine("ID: {0}\t Name : {1}\t Country: {2}\t Salary: {3}\t Date {4} ", RecordRow["ID"], RecordRow["Name"], RecordRow["Country"], RecordRow["Salary"], RecordRow["Date"]);
+
+            }
+
+            ResultCount = ResultRows.Count();
+            TotalSalaries = Convert.ToDouble(EmployeesDataTable.Compute("SUM(Salary)", "Country='Jordan'"));
+            AverageSalaries = Convert.ToDouble(EmployeesDataTable.Compute("Avg(Salary)", "Country='Jordan'"));
+            MinSalary = Convert.ToDouble(EmployeesDataTable.Compute("Min(Salary)", "Country='Jordan'"));
+            MaxSalary = Convert.ToDouble(EmployeesDataTable.Compute("Max(Salary)", "Country='Jordan'"));
+
+
+
+            Console.WriteLine("\nCount of Employees = " + ResultCount);
+            Console.WriteLine("Total Employee Salaries = " + TotalSalaries);
+            Console.WriteLine("Average Employee Salaries = " + AverageSalaries);
+            Console.WriteLine("Minimum Salary = " + MinSalary);
+            Console.WriteLine("Maximum Salary = " + MaxSalary);
+
+
+
+            ResultRows = EmployeesDataTable.Select("Country='Jordan' or Country='Italy'");
+
+            Console.WriteLine("\n\nFilter \"Jordan\" Or \"Italy\" Employees\n");
+
+
+            foreach (DataRow RecordRow in ResultRows)
+            {
+                Console.WriteLine("ID: {0}\t Name : {1}\t Country: {2}\t Salary: {3}\t Date {4} ", RecordRow["ID"], RecordRow["Name"], RecordRow["Country"], RecordRow["Salary"], RecordRow["Date"]);
+
+            }
+
+
+            ResultCount = ResultRows.Count();
+            TotalSalaries = Convert.ToDouble(EmployeesDataTable.Compute("SUM(Salary)", "Country='Jordan' or Country='Italy'"));
+            AverageSalaries = Convert.ToDouble(EmployeesDataTable.Compute("Avg(Salary)", "Country='Jordan' or Country='Italy'"));
+            MinSalary = Convert.ToDouble(EmployeesDataTable.Compute("Min(Salary)", "Country='Jordan' or Country='Italy'"));
+            MaxSalary = Convert.ToDouble(EmployeesDataTable.Compute("Max(Salary)", "Country='Jordan' or Country='Italy'"));
+
+
+            Console.WriteLine("\nCount of Employees = " + ResultCount);
+            Console.WriteLine("Total Employee Salaries = " + TotalSalaries);
+            Console.WriteLine("Average Employee Salaries = " + AverageSalaries);
+            Console.WriteLine("Minimum Salary = " + MinSalary);
+            Console.WriteLine("Maximum Salary = " + MaxSalary);
+
+
+            ResultRows = EmployeesDataTable.Select("ID =1");
+            Console.WriteLine("ID = 1 ");
+
+
+
+            foreach (DataRow RecordRow in ResultRows)
+            {
+                Console.WriteLine("ID: {0}\t Name : {1}\t Country: {2}\t Salary: {3}\t Date {4} ", RecordRow["ID"], RecordRow["Name"], RecordRow["Country"], RecordRow["Salary"], RecordRow["Date"]);
+
+            }
+
+
+            ResultCount = ResultRows.Count();
+            TotalSalaries = Convert.ToDouble(EmployeesDataTable.Compute("SUM(Salary)", "ID =1 "));
+            AverageSalaries = Convert.ToDouble(EmployeesDataTable.Compute("Avg(Salary)", "ID =1 "));
+            MinSalary = Convert.ToDouble(EmployeesDataTable.Compute("Min(Salary)", "ID =1 "));
+            MaxSalary = Convert.ToDouble(EmployeesDataTable.Compute("Max(Salary)", "ID =1 "));
+
+
+            Console.WriteLine("\nCount of Employees = " + ResultCount);
+            Console.WriteLine("Total Employee Salaries = " + TotalSalaries);
+            Console.WriteLine("Average Employee Salaries = " + AverageSalaries);
+            Console.WriteLine("Minimum Salary = " + MinSalary);
+            Console.WriteLine("Maximum Salary = " + MaxSalary);
 
         }
     }
